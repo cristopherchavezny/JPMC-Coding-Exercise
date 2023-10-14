@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A7BC8272ADB5B4500E85E51 /* SearchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC8262ADB5B4400E85E51 /* SearchScreenViewController.swift */; };
 		9ACFEED62AD60D160008AFC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACFEED52AD60D160008AFC0 /* AppDelegate.swift */; };
 		9ACFEED82AD60D160008AFC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACFEED72AD60D160008AFC0 /* SceneDelegate.swift */; };
-		9ACFEEDA2AD60D160008AFC0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACFEED92AD60D160008AFC0 /* ViewController.swift */; };
 		9ACFEEDF2AD60D1A0008AFC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ACFEEDE2AD60D1A0008AFC0 /* Assets.xcassets */; };
 		9ACFEEE22AD60D1A0008AFC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ACFEEE02AD60D1A0008AFC0 /* LaunchScreen.storyboard */; };
 		9ACFEEED2AD736B30008AFC0 /* APIRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACFEEEC2AD736B20008AFC0 /* APIRoute.swift */; };
@@ -18,10 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A7BC8262ADB5B4400E85E51 /* SearchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchScreenViewController.swift; sourceTree = "<group>"; };
 		9ACFEED22AD60D160008AFC0 /* JPMorganChaseWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JPMorganChaseWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ACFEED52AD60D160008AFC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9ACFEED72AD60D160008AFC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9ACFEED92AD60D160008AFC0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9ACFEEDE2AD60D1A0008AFC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9ACFEEE12AD60D1A0008AFC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9ACFEEE32AD60D1A0008AFC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A7BC8252ADB5B4400E85E51 /* SearchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9A7BC8262ADB5B4400E85E51 /* SearchScreenViewController.swift */,
+			);
+			path = SearchScreen;
+			sourceTree = "<group>";
+		};
 		9ACFEEC92AD60D160008AFC0 = {
 			isa = PBXGroup;
 			children = (
@@ -61,9 +69,9 @@
 			isa = PBXGroup;
 			children = (
 				9ACFEEEB2AD6EC580008AFC0 /* Networking */,
+				9A7BC8252ADB5B4400E85E51 /* SearchScreen */,
 				9ACFEEE92AD6E8830008AFC0 /* Resources */,
 				9ACFEEEA2AD6E89E0008AFC0 /* Startup */,
-				9ACFEED92AD60D160008AFC0 /* ViewController.swift */,
 			);
 			path = JPMorganChaseWeatherApp;
 			sourceTree = "<group>";
@@ -167,9 +175,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ACFEEDA2AD60D160008AFC0 /* ViewController.swift in Sources */,
 				9ACFEEEF2AD74FCB0008AFC0 /* NetworkingClient.swift in Sources */,
 				9ACFEED62AD60D160008AFC0 /* AppDelegate.swift in Sources */,
+				9A7BC8272ADB5B4500E85E51 /* SearchScreenViewController.swift in Sources */,
 				9ACFEEED2AD736B30008AFC0 /* APIRoute.swift in Sources */,
 				9ACFEED82AD60D160008AFC0 /* SceneDelegate.swift in Sources */,
 				9ACFEEF12AD818CE0008AFC0 /* NetworkingClientError.swift in Sources */,
@@ -240,7 +248,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -294,7 +302,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
