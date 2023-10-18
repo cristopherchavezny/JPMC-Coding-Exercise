@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A55E5362AE03E2400B1035B /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55E5352AE03E2400B1035B /* Forecast.swift */; };
+		9A55E5382AE03E4500B1035B /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55E5372AE03E4500B1035B /* Coordinates.swift */; };
 		9A7BC8272ADB5B4500E85E51 /* SearchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC8262ADB5B4400E85E51 /* SearchScreenViewController.swift */; };
 		9A7BC8292ADB62D300E85E51 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC8282ADB62D300E85E51 /* DataSource.swift */; };
 		9A7BC82D2ADB683200E85E51 /* Geocode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC82C2ADB683200E85E51 /* Geocode.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A55E5352AE03E2400B1035B /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		9A55E5372AE03E4500B1035B /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
 		9A7BC8262ADB5B4400E85E51 /* SearchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchScreenViewController.swift; sourceTree = "<group>"; };
 		9A7BC8282ADB62D300E85E51 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		9A7BC82C2ADB683200E85E51 /* Geocode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geocode.swift; sourceTree = "<group>"; };
@@ -71,6 +75,8 @@
 			isa = PBXGroup;
 			children = (
 				9A7BC82C2ADB683200E85E51 /* Geocode.swift */,
+				9A55E5352AE03E2400B1035B /* Forecast.swift */,
+				9A55E5372AE03E4500B1035B /* Coordinates.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -222,6 +228,8 @@
 				9A7BC8322ADB839900E85E51 /* CityTableViewCell.swift in Sources */,
 				9ACFEEEF2AD74FCB0008AFC0 /* NetworkingClient.swift in Sources */,
 				9ACFEED62AD60D160008AFC0 /* AppDelegate.swift in Sources */,
+				9A55E5382AE03E4500B1035B /* Coordinates.swift in Sources */,
+				9A55E5362AE03E2400B1035B /* Forecast.swift in Sources */,
 				9A7BC8272ADB5B4500E85E51 /* SearchScreenViewController.swift in Sources */,
 				9A7BC8292ADB62D300E85E51 /* DataSource.swift in Sources */,
 				9ACFEEED2AD736B30008AFC0 /* APIRoute.swift in Sources */,

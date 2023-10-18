@@ -11,13 +11,8 @@ import CoreLocation
 
 class UserLocation: NSObject, CLLocationManagerDelegate {
     private let locationManager: CLLocationManager
-    
-    struct UserLocation: Equatable {
-        let latitude: Double
-        let longitude: Double
-    }
 
-    let userLocationSubject = PassthroughSubject<UserLocation, Error>()
+    let userLocationSubject = PassthroughSubject<Coordinates, Error>()
 
     
     init(locationManager: CLLocationManager = CLLocationManager()) {
@@ -51,7 +46,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         if let location = locations.first {
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
-            userLocationSubject.send(UserLocation(latitude: latitude,
+            userLocationSubject.send(Coordinates(latitude: latitude,
                                                   longitude: longitude))
         }
     }

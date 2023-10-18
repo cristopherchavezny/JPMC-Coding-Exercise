@@ -8,7 +8,7 @@
 import Foundation
 
 enum APIRoute {
-    case getWeather(String, String)
+    case getWeather(lat: String, lon: String, units: String?)
     case getGeocoding(String, String?)
     case getWeatherIcons(String)
     
@@ -43,10 +43,10 @@ enum APIRoute {
         var params: [URLQueryItem] = []
         
         switch self {
-        case .getWeather(let lat, let lon):
+        case .getWeather(let lat, let lon, let units):
             params.append(contentsOf: [URLQueryItem(name: "lat", value: lat),
-                                       URLQueryItem(name: "lon", value: lon)])
-            return params
+                                       URLQueryItem(name: "lon", value: lon),
+                                       URLQueryItem(name: "units", value: units ?? "imperial")])
         case .getGeocoding(let q, let limit):
             params.append(contentsOf: [URLQueryItem(name: "q", value: q),
                                        URLQueryItem(name: "limit", value: limit ?? "5")])
@@ -54,7 +54,7 @@ enum APIRoute {
             return []
         }
 
-        params.append(URLQueryItem(name: "appid", value: ""))
+        params.append(URLQueryItem(name: "appid", value: "19baa95ce3d34166e11ea4d0daccab35"))
         return params
     }
     

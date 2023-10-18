@@ -7,23 +7,31 @@
 
 import Combine
 import Foundation
-import CoreImage
 
 class DataSource {
     init () {}
     
-    func geocoding(query: String) ->AnyPublisher<[Geocode], NetworkingClientError> {
-        fetchGeocoding(query: query)
+    func geocoding<T: Decodable>(type: T.Type, query: String) -> AnyPublisher<[T], NetworkingClientError> {
+        fetch(route: .getGeocoding(query, nil))
     }
     
-    private func fetchGeocoding(query: String) -> AnyPublisher<[Geocode], NetworkingClientError> {
-        NetworkingClient.request(route: .getGeocoding(query, nil))
+    func fetchWeather<T: Decodable>(type: T.Type, coordinates: Coordinates)  -> AnyPublisher<T, NetworkingClientError> {
+        fetch(route: .getWeather(lat: "\(coordinates.latitude)",
+                                 lon: "\(coordinates.longitude)",
+                                 units: nil))
+    }
+    
+    private func fetch<T: Decodable>(route: APIRoute) -> AnyPublisher<T, NetworkingClientError> {
+        NetworkingClient.request(route: route)
             .tryMap {
                 do {
-                    let responseObject = try JSONDecoder().decode([Geocode].self, from: $0)
+                    let responseObject = try JSONDecoder().decode(T.self, from: $0)
                     return responseObject
                 } catch (let error) {
-                    throw NetworkingClientError(kind: .parsingError(error.localizedDescription))
+                    if let decodingError = error as? DecodingError {
+                        throw NetworkingClientError(kind: .parsingError(decodingError.localizedDescription))
+                    }
+                    throw NetworkingClientError(kind: .unknown(error.localizedDescription))
                 }
             }
             .mapError {
