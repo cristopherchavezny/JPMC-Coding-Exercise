@@ -12,6 +12,7 @@ struct NetworkingClientError: Error {
         case invalidRequest(String)
         case transportError
         case unknown(String)
+        case parsingError(String)
     }
 
     let kind: ErrorKind

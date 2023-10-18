@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 class NetworkingClient {
-    class func request<T: Codable>(route: APIRoute) -> AnyPublisher<[String: [T]], NetworkingClientError> {
+    class func request(route: APIRoute) -> AnyPublisher<Data, NetworkingClientError> {
         var components = URLComponents()
         components.scheme = route.scheme
         components.host = route.host
@@ -30,13 +30,14 @@ class NetworkingClient {
                 /// There would be further processing of status codes to truly determine if a successful response was received
                 switch response.statusCode {
                 case 200:
-                    let responseObject = try! JSONDecoder().decode([String: [T]].self, from: $0.data)
-                    return responseObject
+                    return $0.data
                 default:
                     throw NetworkingClientError(kind: .transportError, statusCode: response.statusCode)
                 }
             }
-            .mapError { $0 as? NetworkingClientError ?? NetworkingClientError(kind: .unknown($0.localizedDescription)) }
+            .mapError {
+                return $0 as? NetworkingClientError ?? NetworkingClientError(kind: .unknown($0.localizedDescription))
+            }
             .eraseToAnyPublisher()
     }
 }
