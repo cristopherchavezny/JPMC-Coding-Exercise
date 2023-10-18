@@ -40,7 +40,7 @@ enum APIRoute {
     var parameters: [URLQueryItem] {
         /// This would not be hard coded within the app like this
         /// It is not a secure way to store keys/ tokens
-        var params: [URLQueryItem] = [URLQueryItem(name: "appid", value: "")]
+        var params: [URLQueryItem] = []
         
         switch self {
         case .getWeather(let lat, let lon):
@@ -50,10 +50,12 @@ enum APIRoute {
         case .getGeocoding(let q, let limit):
             params.append(contentsOf: [URLQueryItem(name: "q", value: q),
                                        URLQueryItem(name: "limit", value: limit ?? "5")])
-            return params
         case .getWeatherIcons:
             return []
         }
+
+        params.append(URLQueryItem(name: "appid", value: ""))
+        return params
     }
     
     var method: String {
