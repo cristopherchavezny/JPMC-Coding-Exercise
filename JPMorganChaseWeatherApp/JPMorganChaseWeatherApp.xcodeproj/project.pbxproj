@@ -11,6 +11,7 @@
 		9A7BC8292ADB62D300E85E51 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC8282ADB62D300E85E51 /* DataSource.swift */; };
 		9A7BC82D2ADB683200E85E51 /* Geocode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC82C2ADB683200E85E51 /* Geocode.swift */; };
 		9A7BC8322ADB839900E85E51 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC8312ADB839900E85E51 /* CityTableViewCell.swift */; };
+		9A7BC8352AE003D500E85E51 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC8342AE003D500E85E51 /* UserLocation.swift */; };
 		9ACFEED62AD60D160008AFC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACFEED52AD60D160008AFC0 /* AppDelegate.swift */; };
 		9ACFEED82AD60D160008AFC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACFEED72AD60D160008AFC0 /* SceneDelegate.swift */; };
 		9ACFEEDF2AD60D1A0008AFC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ACFEEDE2AD60D1A0008AFC0 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 		9A7BC8282ADB62D300E85E51 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		9A7BC82C2ADB683200E85E51 /* Geocode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geocode.swift; sourceTree = "<group>"; };
 		9A7BC8312ADB839900E85E51 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		9A7BC8342AE003D500E85E51 /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		9ACFEED22AD60D160008AFC0 /* JPMorganChaseWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JPMorganChaseWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ACFEED52AD60D160008AFC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9ACFEED72AD60D160008AFC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,14 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
+		9A7BC8332AE003BF00E85E51 /* UserLocation */ = {
+			isa = PBXGroup;
+			children = (
+				9A7BC8342AE003D500E85E51 /* UserLocation.swift */,
+			);
+			path = UserLocation;
+			sourceTree = "<group>";
+		};
 		9ACFEEC92AD60D160008AFC0 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +110,7 @@
 		9ACFEED42AD60D160008AFC0 /* JPMorganChaseWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				9A7BC8332AE003BF00E85E51 /* UserLocation */,
 				9A7BC82B2ADB67D500E85E51 /* Models */,
 				9ACFEEEB2AD6EC580008AFC0 /* Networking */,
 				9A7BC8252ADB5B4400E85E51 /* SearchScreen */,
@@ -217,6 +228,7 @@
 				9ACFEED82AD60D160008AFC0 /* SceneDelegate.swift in Sources */,
 				9A7BC82D2ADB683200E85E51 /* Geocode.swift in Sources */,
 				9ACFEEF12AD818CE0008AFC0 /* NetworkingClientError.swift in Sources */,
+				9A7BC8352AE003D500E85E51 /* UserLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +370,8 @@
 				DEVELOPMENT_TEAM = BAQHSM59S2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JPMorganChaseWeatherApp/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To use your location please enable location ffor this app";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To use your location please enable location ffor this app";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -385,6 +399,8 @@
 				DEVELOPMENT_TEAM = BAQHSM59S2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JPMorganChaseWeatherApp/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To use your location please enable location ffor this app";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To use your location please enable location ffor this app";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

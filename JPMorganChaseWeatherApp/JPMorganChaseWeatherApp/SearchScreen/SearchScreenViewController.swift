@@ -16,12 +16,15 @@ class SearchScreenViewController: UIViewController {
     private var tableViewDataSource: UITableViewDiffableDataSource<Sections, Geocode>?
     
     enum Sections: Int {
+        // Leave this here for future cases
         case allCountries
     }
     
     private let dataSource = DataSource()
     private var cancellables = Set<AnyCancellable>()
     
+    private var userLocation: UserLocation?
+
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -111,7 +114,23 @@ extension SearchScreenViewController: UISearchBarDelegate {
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        // TODO: Get user location
+        getUserLocation()
+    }
+    
+    private func getUserLocation() {
+        userLocation = UserLocation()
+        userLocation?.getCoordinates()
+        userLocation?.userLocationSubject
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("!!! \(error.localizedDescription)")
+                }
+            }, receiveValue: { _ in
+            })
+            .store(in: &cancellables)
     }
 }
 
