@@ -78,7 +78,7 @@ class SearchScreenViewController: UIViewController {
     }
 
     private func geocoding(query: String) {
-        dataSource.geocoding(query: query)
+        dataSource.geocoding(type: Geocode.self, query: query)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { result in
                 switch result {
@@ -98,6 +98,24 @@ class SearchScreenViewController: UIViewController {
                 snapshot.appendSections([.allCountries])
                 snapshot.appendItems(cities, toSection: .allCountries)
                 self?.tableViewDataSource?.apply(snapshot, animatingDifferences: true)
+            })
+            .store(in: &cancellables)
+    }
+    
+    private func weather(coordinates: Coordinates) {
+        dataSource.fetchWeather(type: Forecast.self, coordinates: coordinates)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print(error)
+                    // TODO: Display appropriate error message
+                    break
+                }
+            }, receiveValue: { forecast in
+                dump(forecast)
             })
             .store(in: &cancellables)
     }
@@ -128,7 +146,8 @@ extension SearchScreenViewController: UISearchBarDelegate {
                 case .failure(let error):
                     print("!!! \(error.localizedDescription)")
                 }
-            }, receiveValue: { _ in
+            }, receiveValue: { [weak self] coordinates in
+                self?.weather(coordinates: coordinates)
             })
             .store(in: &cancellables)
     }
@@ -147,5 +166,9 @@ extension SearchScreenViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: Request weather for selected location using the coordinates
+        // guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+        guard let city = tableViewDataSource?.itemIdentifier(for: indexPath) else { return }
+        weather(coordinates: Coordinates(latitude: city.lat,
+                                         longitude: city.lon))
     }
 }

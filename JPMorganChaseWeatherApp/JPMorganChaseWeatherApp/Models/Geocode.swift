@@ -9,8 +9,8 @@ import Foundation
 
 struct Geocode: Codable, Hashable {
     let name: String
-    let lat: Float
-    let lon: Float
+    let lat: Double
+    let lon: Double
     let country: String
     let state: String
 }
