@@ -12,7 +12,7 @@ import CoreLocation
 class UserLocation: NSObject, CLLocationManagerDelegate {
     private let locationManager: CLLocationManager
 
-    let userLocationSubject = PassthroughSubject<Coordinates, Error>()
+    let userLocationSubject = PassthroughSubject<Coordinates, UserLocationError>()
 
     
     init(locationManager: CLLocationManager = CLLocationManager()) {
@@ -24,7 +24,9 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     }
     
     func getCoordinates() {
-        locationManager.requestLocation()
+        DispatchQueue.main.async {
+            self.locationManager.requestLocation()            
+        }
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -33,9 +35,11 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
             locationManager.requestLocation()
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
-        case .denied, .restricted:
-            break
+        case .denied:
             // Show message to user to enable location in settings
+            userLocationSubject.send(completion: .failure(UserLocationError(kind: .denied)))
+        case .restricted:
+            userLocationSubject.send(completion: .failure(UserLocationError(kind: .restricted)))
         @unknown default:
             // Log analytics and show message
             break
@@ -44,16 +48,21 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            let latitude = location.coordinate.latitude
-            let longitude = location.coordinate.longitude
-            userLocationSubject.send(Coordinates(latitude: latitude,
-                                                  longitude: longitude))
+            sendCoordinates(using: location)
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         // Handle failure to get a user’s location like analytics and messaging
-        // For now prin error
-        userLocationSubject.send(completion: .failure(error))
+        userLocationSubject.send(
+            completion: .failure(UserLocationError(kind: .error(error.localizedDescription)))
+        )
+    }
+    
+    private func sendCoordinates(using location: CLLocation) {
+        let latitude = location.coordinate.latitude
+        let longitude = location.coordinate.longitude
+        userLocationSubject.send(Coordinates(latitude: latitude,
+                                             longitude: longitude))
     }
 }

@@ -11,6 +11,8 @@
 		9A55E5382AE03E4500B1035B /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55E5372AE03E4500B1035B /* Coordinates.swift */; };
 		9A55E53B2AE0781400B1035B /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55E53A2AE0781300B1035B /* ForecastViewController.swift */; };
 		9A55E53E2AE07B8A00B1035B /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55E53D2AE07B8A00B1035B /* ForecastTableViewCell.swift */; };
+		9A55E5412AE1549600B1035B /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55E5402AE1549600B1035B /* Defaults.swift */; };
+		9A55E5432AE158A000B1035B /* UserLocationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55E5422AE158A000B1035B /* UserLocationError.swift */; };
 		9A7BC8272ADB5B4500E85E51 /* SearchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC8262ADB5B4400E85E51 /* SearchScreenViewController.swift */; };
 		9A7BC8292ADB62D300E85E51 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC8282ADB62D300E85E51 /* DataSource.swift */; };
 		9A7BC82D2ADB683200E85E51 /* Geocode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC82C2ADB683200E85E51 /* Geocode.swift */; };
@@ -30,6 +32,8 @@
 		9A55E5372AE03E4500B1035B /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
 		9A55E53A2AE0781300B1035B /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
 		9A55E53D2AE07B8A00B1035B /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
+		9A55E5402AE1549600B1035B /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		9A55E5422AE158A000B1035B /* UserLocationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationError.swift; sourceTree = "<group>"; };
 		9A7BC8262ADB5B4400E85E51 /* SearchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchScreenViewController.swift; sourceTree = "<group>"; };
 		9A7BC8282ADB62D300E85E51 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		9A7BC82C2ADB683200E85E51 /* Geocode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geocode.swift; sourceTree = "<group>"; };
@@ -74,6 +78,14 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
+		9A55E53F2AE1545700B1035B /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				9A55E5402AE1549600B1035B /* Defaults.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
 		9A7BC8252ADB5B4400E85E51 /* SearchScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				9A7BC8342AE003D500E85E51 /* UserLocation.swift */,
+				9A55E5422AE158A000B1035B /* UserLocationError.swift */,
 			);
 			path = UserLocation;
 			sourceTree = "<group>";
@@ -143,6 +156,7 @@
 				9ACFEEE92AD6E8830008AFC0 /* Resources */,
 				9A7BC8252ADB5B4400E85E51 /* SearchScreen */,
 				9ACFEEEA2AD6E89E0008AFC0 /* Startup */,
+				9A55E53F2AE1545700B1035B /* UserDefaults */,
 				9A7BC8332AE003BF00E85E51 /* UserLocation */,
 			);
 			path = JPMorganChaseWeatherApp;
@@ -251,6 +265,7 @@
 				9ACFEEEF2AD74FCB0008AFC0 /* NetworkingClient.swift in Sources */,
 				9ACFEED62AD60D160008AFC0 /* AppDelegate.swift in Sources */,
 				9A55E5382AE03E4500B1035B /* Coordinates.swift in Sources */,
+				9A55E5432AE158A000B1035B /* UserLocationError.swift in Sources */,
 				9A55E53E2AE07B8A00B1035B /* ForecastTableViewCell.swift in Sources */,
 				9A55E5362AE03E2400B1035B /* Forecast.swift in Sources */,
 				9A7BC8272ADB5B4500E85E51 /* SearchScreenViewController.swift in Sources */,
@@ -259,6 +274,7 @@
 				9ACFEED82AD60D160008AFC0 /* SceneDelegate.swift in Sources */,
 				9A7BC82D2ADB683200E85E51 /* Geocode.swift in Sources */,
 				9ACFEEF12AD818CE0008AFC0 /* NetworkingClientError.swift in Sources */,
+				9A55E5412AE1549600B1035B /* Defaults.swift in Sources */,
 				9A55E53B2AE0781400B1035B /* ForecastViewController.swift in Sources */,
 				9A7BC8352AE003D500E85E51 /* UserLocation.swift in Sources */,
 			);

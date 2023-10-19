@@ -22,12 +22,19 @@ class SearchScreenViewController: UIViewController {
     
     private let dataSource = DataSource()
     private var cancellables = Set<AnyCancellable>()
-    
-    private var userLocation: UserLocation?
+
+    /// onFirstLaunchLocation is to determine if location is requested upon first launch or user action
+    private var onFirstLaunchLocation = true
+    private let userLocation: UserLocation
+    private let defaults: Defaults
     
     private var forecastViewController: ForecastViewController?
 
-    init() {
+    init(userLocation: UserLocation = UserLocation(),
+         defaults: Defaults = Defaults()) {
+        self.userLocation = userLocation
+        self.defaults = defaults
+
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -43,6 +50,8 @@ class SearchScreenViewController: UIViewController {
         setupSearchBar()
         layoutViews()
         configureTableView()
+        userLocation.getCoordinates()
+        userLocationSubscription()
     }
 
     private func setupSearchBar() {
@@ -145,24 +154,39 @@ extension SearchScreenViewController: UISearchBarDelegate {
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        getUserLocation()
+        onFirstLaunchLocation = false
+        userLocation.getCoordinates()
     }
     
-    private func getUserLocation() {
-        userLocation = UserLocation()
-        userLocation?.getCoordinates()
-        userLocation?.userLocationSubject
-            .sink(receiveCompletion: { result in
+    private func userLocationSubscription() {
+        userLocation.userLocationSubject
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] result in
                 switch result {
                 case .finished:
                     break
                 case .failure(let error):
+                    switch error.kind {
+                    case .restricted, .denied, .notDetermined:
+                        if let onFirstLaunch = self?.onFirstLaunchLocation,
+                           onFirstLaunch {
+                            // If first launch then try last search city in Defaults
+                            self?.tryLastSavedSeach()
+                        }
+                    case .error:
+                        break
+                    }
                     print("!!! \(error.localizedDescription)")
                 }
             }, receiveValue: { [weak self] coordinates in
                 self?.weather(coordinates: coordinates)
             })
             .store(in: &cancellables)
+    }
+    
+    private func tryLastSavedSeach() {
+        guard let savedCoordinates = defaults.savedCoordinates else { return }
+        weather(coordinates: savedCoordinates)
     }
 }
 
@@ -184,10 +208,10 @@ extension SearchScreenViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: Request weather for selected location using the coordinates
-        // guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         guard let city = tableViewDataSource?.itemIdentifier(for: indexPath) else { return }
-        weather(coordinates: Coordinates(latitude: city.lat,
-                                         longitude: city.lon))
+        let coordinates = Coordinates(latitude: city.lat, longitude: city.lon)
+        // Save city name
+        defaults.savedCoordinates = coordinates
+        weather(coordinates: coordinates)
     }
 }
