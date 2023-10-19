@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9A55E5362AE03E2400B1035B /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55E5352AE03E2400B1035B /* Forecast.swift */; };
 		9A55E5382AE03E4500B1035B /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55E5372AE03E4500B1035B /* Coordinates.swift */; };
+		9A55E53B2AE0781400B1035B /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55E53A2AE0781300B1035B /* ForecastViewController.swift */; };
+		9A55E53E2AE07B8A00B1035B /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55E53D2AE07B8A00B1035B /* ForecastTableViewCell.swift */; };
 		9A7BC8272ADB5B4500E85E51 /* SearchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC8262ADB5B4400E85E51 /* SearchScreenViewController.swift */; };
 		9A7BC8292ADB62D300E85E51 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC8282ADB62D300E85E51 /* DataSource.swift */; };
 		9A7BC82D2ADB683200E85E51 /* Geocode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC82C2ADB683200E85E51 /* Geocode.swift */; };
@@ -26,6 +28,8 @@
 /* Begin PBXFileReference section */
 		9A55E5352AE03E2400B1035B /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		9A55E5372AE03E4500B1035B /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		9A55E53A2AE0781300B1035B /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		9A55E53D2AE07B8A00B1035B /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		9A7BC8262ADB5B4400E85E51 /* SearchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchScreenViewController.swift; sourceTree = "<group>"; };
 		9A7BC8282ADB62D300E85E51 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		9A7BC82C2ADB683200E85E51 /* Geocode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geocode.swift; sourceTree = "<group>"; };
@@ -53,6 +57,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A55E5392AE077BB00B1035B /* Forecast */ = {
+			isa = PBXGroup;
+			children = (
+				9A55E53C2AE07B7000B1035B /* TableView */,
+				9A55E53A2AE0781300B1035B /* ForecastViewController.swift */,
+			);
+			path = Forecast;
+			sourceTree = "<group>";
+		};
+		9A55E53C2AE07B7000B1035B /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				9A55E53D2AE07B8A00B1035B /* ForecastTableViewCell.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		9A7BC8252ADB5B4400E85E51 /* SearchScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,12 +137,13 @@
 		9ACFEED42AD60D160008AFC0 /* JPMorganChaseWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				9A7BC8332AE003BF00E85E51 /* UserLocation */,
+				9A55E5392AE077BB00B1035B /* Forecast */,
 				9A7BC82B2ADB67D500E85E51 /* Models */,
 				9ACFEEEB2AD6EC580008AFC0 /* Networking */,
-				9A7BC8252ADB5B4400E85E51 /* SearchScreen */,
 				9ACFEEE92AD6E8830008AFC0 /* Resources */,
+				9A7BC8252ADB5B4400E85E51 /* SearchScreen */,
 				9ACFEEEA2AD6E89E0008AFC0 /* Startup */,
+				9A7BC8332AE003BF00E85E51 /* UserLocation */,
 			);
 			path = JPMorganChaseWeatherApp;
 			sourceTree = "<group>";
@@ -229,6 +251,7 @@
 				9ACFEEEF2AD74FCB0008AFC0 /* NetworkingClient.swift in Sources */,
 				9ACFEED62AD60D160008AFC0 /* AppDelegate.swift in Sources */,
 				9A55E5382AE03E4500B1035B /* Coordinates.swift in Sources */,
+				9A55E53E2AE07B8A00B1035B /* ForecastTableViewCell.swift in Sources */,
 				9A55E5362AE03E2400B1035B /* Forecast.swift in Sources */,
 				9A7BC8272ADB5B4500E85E51 /* SearchScreenViewController.swift in Sources */,
 				9A7BC8292ADB62D300E85E51 /* DataSource.swift in Sources */,
@@ -236,6 +259,7 @@
 				9ACFEED82AD60D160008AFC0 /* SceneDelegate.swift in Sources */,
 				9A7BC82D2ADB683200E85E51 /* Geocode.swift in Sources */,
 				9ACFEEF12AD818CE0008AFC0 /* NetworkingClientError.swift in Sources */,
+				9A55E53B2AE0781400B1035B /* ForecastViewController.swift in Sources */,
 				9A7BC8352AE003D500E85E51 /* UserLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

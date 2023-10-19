@@ -21,8 +21,10 @@ enum APIRoute {
     
     var host: String {
         switch self {
-        case .getWeather, .getGeocoding, .getWeatherIcons:
+        case .getWeather, .getGeocoding:
             return "api.openweathermap.org"
+        case .getWeatherIcons:
+            return "openweathermap.org"
         }
     }
     
@@ -54,7 +56,7 @@ enum APIRoute {
             return []
         }
 
-        params.append(URLQueryItem(name: "appid", value: "19baa95ce3d34166e11ea4d0daccab35"))
+        params.append(URLQueryItem(name: "appid", value: ""))
         return params
     }
     

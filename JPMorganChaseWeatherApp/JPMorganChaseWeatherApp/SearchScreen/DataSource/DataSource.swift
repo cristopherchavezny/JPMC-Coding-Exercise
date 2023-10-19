@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import UIKit
 
 class DataSource {
     init () {}
@@ -19,6 +20,19 @@ class DataSource {
         fetch(route: .getWeather(lat: "\(coordinates.latitude)",
                                  lon: "\(coordinates.longitude)",
                                  units: nil))
+    }
+    
+    func fetchWeatherIcon(weatherIcon id: String) -> AnyPublisher<UIImage, Error> {
+        NetworkingClient.request(route: .getWeatherIcons(id))
+            .tryMap { data in
+                guard let image = UIImage(data: data) else {
+                    throw URLError(.badServerResponse,
+                                   userInfo: [NSURLErrorFailingURLErrorKey: id])
+                }
+
+                return image
+            }
+            .eraseToAnyPublisher()
     }
     
     private func fetch<T: Decodable>(route: APIRoute) -> AnyPublisher<T, NetworkingClientError> {

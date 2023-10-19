@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Forecast: Codable {
+struct Forecast: Codable, Hashable {
     let weather: [Weather]
     let coordinates: Coordinates
     let temperature: Temperature
@@ -23,17 +23,24 @@ struct Forecast: Codable {
         case sys
         case name
     }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(weather)
+        hasher.combine(coordinates)
+        hasher.combine(temperature)
+        hasher.combine(sys)
+    }
 }
 
-struct Sys: Codable {
-    let type: Int
-    let id: Int
+struct Sys: Codable, Hashable {
+    let type: Int?
+    let id: Int?
     let country: String
     let sunrise: Int
     let sunset: Int
 }
 
-struct Temperature: Codable {
+struct Temperature: Codable, Hashable {
     let temperature: Double
     let feelsLike: Double
     let temperatureMin: Double
@@ -55,7 +62,7 @@ struct Temperature: Codable {
     }
 }
 
-struct Weather: Codable {
+struct Weather: Codable, Hashable {
     let id: Int
     let main: String
     let description: String

@@ -47,6 +47,7 @@ class CityTableViewCell: UITableViewCell {
         contentView.addSubview(stateLabel)
         contentView.addSubview(countryNameLabel)
     }
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             cityNameLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 8),
@@ -66,7 +67,8 @@ class CityTableViewCell: UITableViewCell {
     
     func applyModel(city: Geocode) {
         cityNameLabel.text = city.name
-        stateLabel.text = city.state + ", "
         countryNameLabel.text = city.country
+        guard let state = city.state else { return }
+        stateLabel.text = state + ", "
     }
 }

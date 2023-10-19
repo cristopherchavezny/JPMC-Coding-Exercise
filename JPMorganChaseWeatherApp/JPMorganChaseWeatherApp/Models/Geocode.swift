@@ -12,5 +12,5 @@ struct Geocode: Codable, Hashable {
     let lat: Double
     let lon: Double
     let country: String
-    let state: String
+    let state: String?
 }
