@@ -21,7 +21,7 @@ class NetworkingClient {
 
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = route.method
-        
+
         return URLSession.shared.dataTaskPublisher(for: urlRequest)
             .tryMap {
                 guard let response = $0.response as? HTTPURLResponse

@@ -24,6 +24,8 @@ class SearchScreenViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     
     private var userLocation: UserLocation?
+    
+    private var forecastViewController: ForecastViewController?
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -94,10 +96,7 @@ class SearchScreenViewController: UIViewController {
                     // Show no results message
                     return
                 }
-                var snapshot = NSDiffableDataSourceSnapshot<Sections, Geocode>()
-                snapshot.appendSections([.allCountries])
-                snapshot.appendItems(cities, toSection: .allCountries)
-                self?.tableViewDataSource?.apply(snapshot, animatingDifferences: true)
+                self?.applySnapshot(cities: cities)
             })
             .store(in: &cancellables)
     }
@@ -114,14 +113,28 @@ class SearchScreenViewController: UIViewController {
                     // TODO: Display appropriate error message
                     break
                 }
-            }, receiveValue: { forecast in
-                dump(forecast)
+            }, receiveValue: { [weak self] forecast in
+                self?.pushForecastViewController(using: forecast)
             })
             .store(in: &cancellables)
+    }
+    
+    private func pushForecastViewController(using forecast: Forecast) {
+        let forecastViewController = ForecastViewController(forecast: forecast,
+                                                            dataSource: dataSource)
+        forecastViewController.modalPresentationStyle = .formSheet
+        forecastViewController.preferredContentSize = .init(width: 500, height: 800)
+        self.forecastViewController = forecastViewController
+        present(forecastViewController, animated: true)
     }
 }
 
 extension SearchScreenViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            applySnapshot(cities: [])
+        }
+    }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchBarText = searchBar.text else { return }
         
@@ -154,7 +167,13 @@ extension SearchScreenViewController: UISearchBarDelegate {
 }
 
 extension SearchScreenViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView,
+    private func applySnapshot(cities: [Geocode]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Sections, Geocode>()
+        snapshot.appendSections([.allCountries])
+        snapshot.appendItems(cities, toSection: .allCountries)
+        tableViewDataSource?.apply(snapshot, animatingDifferences: true)
+    }
+    private func tableView(tableView: UITableView,
                    cellforRow row: Geocode,
                    at indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCell.identifier) as? CityTableViewCell
